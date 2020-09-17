@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Order>
+
+@{
+    ViewData["Title"] = "ReportBResults";
+}
+<h2>All Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order Number
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                Total
+            </th>
+            <th>
+                WACC
+            </th>
+            <th>
+                Profit Margin
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Order o in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => o.OrderID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => o.NumberOfBooks)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => o.AppUser.FullName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => o.OrderSubtotal)
+            </td>
+            @*
+        <td>
+            @{
+                decimal cost = o.OrderCost;
+                decimal numbooks = o.NumberOfBooks;
+                getWACC(cost, numbooks);
+            }
+        </td>
+            *@
+            <td>
+                @Html.DisplayFor(modelItem => o.WACC)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => o.OrderMargin)
+            </td>
+        </tr>
+
+        }
+    </tbody>
+
+    @*
+        @functions{
+            public decimal getWACC(decimal cost, decimal numberofbooks)
+            {
+                return cost / numberofbooks;
+            }
+
+        }
+    *@
+</table>
+
+<a asp-action="Index" asp-controller="Reports">Back to Reports</a>

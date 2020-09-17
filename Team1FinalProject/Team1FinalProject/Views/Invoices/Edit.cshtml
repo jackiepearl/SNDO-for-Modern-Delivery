@@ -1,0 +1,34 @@
+﻿@model Team1FinalProject.Models.Invoice
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Invoice</h4>
+
+<h4>Line Items</h4>
+<table class="table table-sm table-striped table-hover">
+    <tr>
+        <th>Title</th>
+        <th>Quantity Ordered</th>
+        <th>Cost</th>
+        <th>Extended Cost</th>
+    </tr>
+    @foreach (InvoiceDet ivd in Model.InvoiceDets)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => ivd.Book.Title)</td>
+            <td>@Html.DisplayFor(modelItem => ivd.QuantityOrdered)</td>
+            <td>@Html.DisplayFor(modelItem => ivd.Book.Cost)</td>
+            <td>@Html.DisplayFor(modelItem => ivd.ExtendedCost)</td>
+        </tr>
+    }
+</table>
+
+
+<div>
+    <a asp-action="DetailedSearch" asp-controller="Books">Add To Invoice</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

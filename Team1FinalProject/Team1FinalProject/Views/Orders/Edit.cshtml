@@ -1,0 +1,51 @@
+﻿@model Team1FinalProject.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderID" />
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                @Html.DisplayFor(m => m.OrderDate, new { @class = "form-control" })
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<h4>Orders</h4>
+<table class="table table-sm table-striped table-hover">
+    <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total Book Cost</th>
+    </tr>
+    @foreach (OrderDet od in Model.OrderDets)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => od.Book.Title)</td>
+            <td>@Html.DisplayFor(modelItem => od.Book.Price)</td>
+            <td>@Html.DisplayFor(modelItem => od.Quantity)</td>
+            <td>@Html.DisplayFor(modelItem => od.TotalBookPrice)</td>
+        </tr>
+    }
+</table>
+
+<div>
+    <a asp-action="AddToOrder" asp-route-id="@Model.OrderID" class="btn btn-primary">Add Another Book</a>
+    <a asp-action="RemoveFromOrder" asp-route-id="@Model.OrderID" class="btn btn-primary">Edit Existing Books</a>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

@@ -1,0 +1,99 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<RoleEditModel>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2>Index</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Roles</div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Users</th>
+            <th></th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="4" class="text-center">No roles</td>
+            </tr>
+        }
+        else
+        {
+            foreach (RoleEditModel role in Model)
+            {
+                @if (User.IsInRole("Manager"))
+                {
+                    <tr>
+                        <td>@role.Role.Id</td>
+                        <td>@role.Role.Name</td>
+                        <td>
+                            @if (role.Members == null || role.Members.Count() == 0)
+                            {
+                                @: No Users in role
+                            }
+                            else
+                            {
+                                <p>@string.Join(", ", role.Members.Select(x => x.Email))</p>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = role.Role.Id }, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+
+                @if (User.IsInRole("Employee"))
+                {
+                    @if (role.Role.Name == "Customer")
+                    {
+                        <tr>
+                            <td>@role.Role.Id</td>
+                            <td>@role.Role.Name</td>
+                            <td>
+                                @if (role.Members == null || role.Members.Count() == 0)
+                                {
+                                    @: No Users in role
+                                }
+                                else
+                                {
+                                    <p>@string.Join(", ", role.Members.Select(x => x.Email))</p>
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = role.Role.Id }, new { @class = "btn btn-primary" })
+                            </td>
+                        </tr>
+
+                    }
+                }
+
+            }
+
+
+        }
+    </table>
+</div>
+
+<div>
+    @if (User.IsInRole("Employee"))
+    {
+        <div class="btn-group">
+            <a asp-action="CreateCustomer" asp-controller="RoleAdmin" class="btn btn-info">Create New Customer</a>
+            <a asp-action="EmployeeEdit" asp-controller="RoleAdmin" class="btn btn-danger">Modify Customer</a>
+        </div>
+    }
+
+    @if (User.IsInRole("Manager"))
+    {
+        <div class="btn-group">
+            <a asp-action="CreateEmployee" asp-controller="RoleAdmin" class="btn btn-info">Create New Employee</a>
+            <a asp-action="ManagerEdit" asp-controller="RoleAdmin" class="btn btn-danger">Modify Customer</a>
+            <a asp-action="ManagerEdit2" asp-controller="RoleAdmin" class="btn btn-danger">Modify Employee</a>
+        </div>
+    }
+</div>

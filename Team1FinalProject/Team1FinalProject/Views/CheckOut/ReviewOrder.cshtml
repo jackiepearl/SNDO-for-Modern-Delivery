@@ -1,0 +1,82 @@
+﻿@model Team1FinalProject.Models.Order
+@using Team1FinalProject.Controllers
+
+@{
+    ViewData["Title"] = "ReviewOrder";
+}
+
+<h2>Review Order</h2>
+
+<div>
+    <h4>Books</h4>
+    <table class="table table-sm table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Book Price After All Discounts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (OrderDet od in Model.OrderDets)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => od.TotalBookPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <table class="table table-sm table-bordered" style="width:30%">
+            <tr>
+                <th colspan="2" style="text-align:center">Order Summary</th>
+            </tr>
+            <tr>
+                <td>Shipping Address</td>
+                <td>@ViewBag.UserAddress</td>
+            </tr>
+            <tr>
+                <td>Credit Card</td>
+                <td>@Html.DisplayFor(o => o.OrderCard.CreditCardNumber)</td>
+            </tr>
+            <tr>
+                <td>Coupon</td>
+                <td>@Html.DisplayFor(o => o.Coupon)</td>
+            </tr>
+            <tr>
+                <td>Order Subtotal</td>
+                <td>@Html.DisplayFor(o => o.OrderSubtotal)</td>
+            </tr>
+            <tr>
+                <td>Shipping Cost</td>
+                <td>@Html.DisplayFor(o => o.ShipCost)</td>
+            </tr>
+            <tr>
+                <td>Order Total</td>
+                <td>@Html.DisplayFor(o => o.OrderTotal)</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.OrderID)
+    
+    <input type="hidden" name="id" value="@Model.OrderID" />
+
+    <div class="form-group">
+        <input type="submit" value="Complete Order" class="btn btn-dark" />
+    </div>
+}
+
+
+<a asp-action="Index" asp-controller="Books">Back to Books</a>

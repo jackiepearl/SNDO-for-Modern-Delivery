@@ -1,0 +1,56 @@
+﻿@model CustomerEditModel
+
+@{
+    ViewData["Title"] = "ReportCResults";
+}
+<h2>All Orders</h2>
+
+@Html.BeginForm()
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Modify
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (AppUser u in Model.Members)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => u.FullName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => u.Email)
+                </td>
+
+                <td>
+                    <input type="checkbox" name="IdsToEdit" value="@u.Id" />
+
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+
+<div>
+    <button type="submit" class="btn btn-danger">Modify</button>
+
+</div>
+
+}
+

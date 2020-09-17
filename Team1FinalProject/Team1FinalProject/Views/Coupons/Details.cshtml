@@ -1,0 +1,60 @@
+﻿@model Team1FinalProject.Models.Coupon
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coupon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CouponCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PercentOff)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PercentOff)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FreeShip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FreeShip)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BaselineValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BaselineValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiveStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActiveStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BeginDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CouponID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

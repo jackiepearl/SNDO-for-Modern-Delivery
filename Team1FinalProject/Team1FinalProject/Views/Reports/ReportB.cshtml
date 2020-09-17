@@ -1,0 +1,26 @@
+﻿@using Team1FinalProject.Controllers
+@{
+    ViewData["Title"] = "ReportB";
+}
+
+<h2>Choose a sort option:</h2>
+
+<form asp-action="DisplayReportB" asp-controller="Reports" method="get">
+
+
+    <div class="form-group">
+        <label class="radio">@Html.RadioButton("Sort", SortByB.Recent, true)Most Recent</label>
+        <div></div>
+        <label class="radio">@Html.RadioButton("Sort", SortByB.PMasc)Profit Margin Ascending</label>
+        <div></div>
+        <label class="radio">@Html.RadioButton("Sort", SortByB.PMdesc)Profit Margin Descending</label>
+        <div></div>
+        <label class="radio">@Html.RadioButton("Sort", SortByB.PriceAsc)Price Ascending</label>
+        <div></div>
+        <label class="radio">@Html.RadioButton("Sort", SortByB.PriceDesc)Price Descending</label>
+    </div>
+
+
+    <button type="submit" class="btn btn-danger">Search</button>
+
+</form>

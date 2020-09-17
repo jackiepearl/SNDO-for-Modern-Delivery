@@ -1,0 +1,59 @@
+﻿@model Team1FinalProject.Models.Invoice
+
+@{
+    ViewData["Title"] = "Submit Invoice";
+}
+
+<h2>Submit</h2>
+
+<h3>Are you sure you want to submit this?</h3>
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.ProDatePlaced != default(DateTime))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProDatePlaced)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProDatePlaced)
+            </dd>
+        }
+        @if (Model.ProDateArrived != default(DateTime))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProDateArrived)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProDateArrived)
+            </dd>
+        }
+    </dl>
+    <h4>Line Items</h4>
+    <table class="table table-sm table-striped table-hover">
+        <tr>
+            <th>Title</th>
+            <th>Quantity Ordered</th>
+            <th>Quantity Arrived</th>
+            <th>Cost</th>
+            <th>Extended Cost</th>
+        </tr>
+        @foreach (InvoiceDet ivd in Model.InvoiceDets)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => ivd.Book.Title)</td>
+                <td>@Html.DisplayFor(modelItem => ivd.QuantityOrdered)</td>
+                <td>@Html.DisplayFor(modelItem => ivd.QuantityArrived)</td>
+                <td>@Html.DisplayFor(modelItem => ivd.BookCost)</td>
+                <td>@Html.DisplayFor(modelItem => ivd.ExtendedCost)</td>
+            </tr>
+        }
+    </table>
+
+    <form asp-action="SubmitInvoice">
+        <input type="hidden" asp-for="InvoiceID" />
+        <input type="submit" value="Submit" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

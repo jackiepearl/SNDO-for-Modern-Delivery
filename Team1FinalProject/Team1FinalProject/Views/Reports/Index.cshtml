@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Reports</h2>
+
+<form asp-action="Reports" asp-controller="Reports" method="get">
+    <p class="form-group">
+        <a asp-action="ReportA" class="btn btn-outline-dark">All books sold</a>
+        <a asp-action="ReportB" class="btn btn-outline-dark">All orders</a>
+        <a asp-action="ReportC" class="btn btn-outline-dark">All customers</a>
+        <a asp-action="ReportD" class="btn btn-outline-dark">Totals</a>
+        <a asp-action="ReportE" class="btn btn-outline-dark">Current Inventory</a>
+        <a asp-action="ReportF" class="btn btn-outline-dark">Approved/Rejected Reviews</a>
+
+    </p>
+</form>
+
+
+
+
+
+
+

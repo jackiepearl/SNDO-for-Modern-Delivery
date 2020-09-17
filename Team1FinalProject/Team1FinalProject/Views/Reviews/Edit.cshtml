@@ -1,0 +1,47 @@
+﻿@model Team1FinalProject.Models.Review
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Review</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ReviewID" />
+            <div class="form-group">
+                <label asp-for="ReviewContent" class="control-label"></label>
+                <input asp-for="ReviewContent" class="form-control" />
+                <span asp-validation-for="ReviewContent" class="text-danger"></span>
+            </div>
+
+            <dl>
+                Rating:
+                <dd>@Model.Rating</dd>
+
+            </dl>
+
+
+            <div class="form-group">
+                Rating:
+                <label class="radio">@Html.RadioButton("ApprovalStatus", 0) Approve</label>
+                <label class="radio">@Html.RadioButton("ApprovalStatus", 1) Reject</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

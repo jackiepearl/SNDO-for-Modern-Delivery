@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="DetailedSearch" asp-controller="Books" class="btn btn-outline-dark">Manual Reorders</a>
+    <a asp-action="AutoReorder" class="btn btn-outline-dark">Automatic Reorders</a>
+    <a asp-action="BooksOnOrder" asp-controller="InvoiceDets" class="btn btn-outline-dark">Books On Order</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProDatePlaced)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProDateArrived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceID)
+                </td>
+                @if (item.ProDatePlaced != default(DateTime))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProDatePlaced)
+                    </td>
+                }
+                @if (item.ProDatePlaced == default(DateTime))
+                {
+                    <td>
+                        n/a
+                    </td>
+                }
+                @if (item.ProDateArrived != default(DateTime))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProDateArrived)
+                    </td>
+                }
+                @if (item.ProDateArrived == default(DateTime))
+                {
+                    <td>
+                        n/a
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceTotal)
+                </td>
+                <td>
+                    @if (item.ProDatePlaced == default(DateTime))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.InvoiceID">Edit</a>
+                    }
+                    | <a asp-action="Details" asp-route-id="@item.InvoiceID">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "ReportD";
+}
+
+<h2>Totals</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Total Profit
+            </th>
+            <th>
+                Total Cost
+            </th>
+            <th>
+                Total Revenue
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        <tr>
+            <td>
+                @ViewBag.Profit
+            </td>
+
+            <td>
+                @ViewBag.Cost
+            </td>
+
+            <td>
+                @ViewBag.Revenue
+            </td>
+
+        </tr>
+        
+    </tbody>
+
+
+</table>
+
+<a asp-action="Index" asp-controller="Reports">Back to Reports</a>

@@ -1,0 +1,79 @@
+﻿@model Team1FinalProject.Models.Order
+
+<h2>Shopping Cart</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        
+
+    </dl>
+</div>
+<div>
+    <h4>Books</h4>
+    <table class="table table-sm table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Book Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (OrderDet od in Model.OrderDets)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => od.TotalBookPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm table-bordered" style="width:30%">
+        <tr>
+            <th colspan="2" style="text-align:center">Order Summary</th>
+        </tr>
+        <tr>
+            <td>Order Subtotal</td>
+            <td>@Html.DisplayFor(o => o.OrderSubtotal)</td>
+        </tr>
+        <tr>
+            <td>Ship Cost</td>
+            <td>@Html.DisplayFor(o => o.ShipCost)</td>
+        </tr>
+        <tr>
+            <td>Order Total</td>
+            <td>@Html.DisplayFor(o => o.OrderTotal)</td>
+        </tr>
+
+    </table>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="CheckOut" asp-route-id="@Model.OrderID" class="btn btn-success">Check Out</a>
+    <br><br/> 
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OrderID" class="btn btn-danger">Edit</a> 
+    
+</div>

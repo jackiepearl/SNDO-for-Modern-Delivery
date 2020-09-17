@@ -1,0 +1,51 @@
+﻿@using Team1FinalProject.Controllers;
+@{
+    ViewData["Title"] = "DetailedSearch";
+}
+
+<h2>Detailed Search</h2>
+<form asp-action="DisplaySearchResults" asp-controller="Books" method="get">
+    <div class="form-group">
+        <label>Search Title:</label>
+        <input name="SearchTitle" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Search Author:</label>
+        <input name="SearchAuthor" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Select a Genre:</label>
+        @Html.DropDownList("SelectedGenre", (SelectList)ViewBag.AllGenres, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        Unique Number: @Html.TextBox("SearchUnique", null, new { @class = "form-control" }) <div class="text-danger">@ViewBag.Message</div>
+    </div>
+
+    <div>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortTitle, true)Title</label>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortAuthor)Author</label>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortDateNewest)Newest Date First</label>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortDateOldest)Oldest Date First</label>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortPopular)Highest Popularity</label>
+        <label class="radio">@Html.RadioButton("SortBy", Sort.SortRating)Highest Rating</label>
+    </div>
+
+    <div>
+        <label>Only view items in stock</label>
+        <input type="checkbox" name="StockSort" value="true" />
+        <input type="hidden" name="StockSort" value="false" />
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+    <p></p>
+    @if (User.IsInRole("Manager"))
+    {
+        <a asp-action="AddNewGenre" class="btn btn-outline-dark">Add New Genre</a>
+    }
+
+
+</form>
+

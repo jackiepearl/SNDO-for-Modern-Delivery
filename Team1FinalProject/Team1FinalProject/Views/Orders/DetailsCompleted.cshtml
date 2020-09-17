@@ -1,0 +1,81 @@
+﻿@*JACKIE - created this view for an order that's complete (no edit button)*@
+
+@model Team1FinalProject.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderTotal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShipCost)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <h4>Books</h4>
+    <table class="table table-sm table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Book Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (OrderDet od in Model.OrderDets)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => od.TotalBookPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+<table class="table table-sm table-bordered" style="width:30%">
+    <tr>
+        <th colspan="2" style="text-align:center">Order Summary</th>
+    </tr>
+    <tr>
+        <td>Order Subtotal</td>
+        <td>@Html.DisplayFor(o => o.OrderSubtotal)</td>
+    </tr>
+
+</table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Team1FinalProject.Models.OrderDet>
+
+
+@{
+    ViewData["Title"] = "ReportAResults";
+}
+<h2>All Books sold</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.AppUser.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Margin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.OrderID)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Title)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.AppUser.FullName)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookPrice)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookCost)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Margin)
+                </td>
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.OrderID)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+<a asp-action="Index" asp-controller="Reports">Back to Reports</a>

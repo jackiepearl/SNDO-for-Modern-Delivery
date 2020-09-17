@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Team1FinalProject.Models.OrderDet>
+
+@{
+    ViewData["Title"] = "RemoveFromOrder";
+}
+
+<h2>Remove From Order</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalBookPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalBookPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "OrderDets", new { id = item.OrderDetID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "OrderDets", new { id = item.OrderDetID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

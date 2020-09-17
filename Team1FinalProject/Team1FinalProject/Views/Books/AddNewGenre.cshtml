@@ -1,0 +1,14 @@
+﻿@*JACKIE - created this view for a manager to add a new genre*@
+
+@{
+    ViewData["Title"] = "AddNewGenre";
+}
+
+<h2>Add New Genre</h2>
+<form asp-action="AddNewGenre" asp-controller="Books" method="post">
+    <div class="form-group">
+        <label>Genre Name:</label>
+        <input name="GenreString" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-outline-dark">Submit</button>
+</form>

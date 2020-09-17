@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Team1FinalProject.Models.AppUser>
+
+@{
+    ViewData["Title"] = "ReportCResults";
+}
+<h2>All Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee Username
+            </th>
+            <th>
+                Number of Reviews Approved
+            </th>
+            <th>
+                Number of Reviews Rejected
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (AppUser u in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => u.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => u.NumReviewsApproved)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => u.NumReviewsRejected)
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+
+
+</table>
+
+<a asp-action="Index" asp-controller="Reports">Back to Reports</a>

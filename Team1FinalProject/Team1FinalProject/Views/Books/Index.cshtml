@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Books</h2>
+
+<form asp-action="Index" asp-controller="Books" method="get">
+    <p class="form-group">
+        <a asp-action="DetailedSearch" class="btn btn-outline-primary">Detailed Search</a>
+        <a asp-action="Index" class="btn btn-outline-primary">Show All</a>
+        @if (User.IsInRole("Manager"))
+        {
+            <a asp-action="Index" asp-controller="Invoices" class="btn btn-outline-primary">Procurement</a>
+            <a asp-action="Index" asp-controller="Reviews" class="btn btn-outline-primary">Reviews</a>
+            <a asp-action="Index" asp-controller="Reports" class="btn btn-outline-primary">Reports</a>
+        }
+        @if (User.IsInRole("Employee"))
+        {
+            <a asp-action="Index" asp-controller="Reviews" class="btn btn-info">Reviews</a>
+        }
+    </p>
+</form>
+
+<label>@ViewBag.Display</label>
+<div>
+    @if (ViewContext.HttpContext.User.IsInRole("Manager"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UniqueNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgRating)
+            </th>
+            <th>
+                In Stock
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UniqueNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvgRating)
+                </td>
+                <td>
+                    @(item.Inventory <= 0 ? "No" : "Yes")
+                </td>
+                <td>
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.BookID">Edit</a>
+                    }
+                    |
+                    <a asp-action="Details" asp-route-id="@item.BookID">Details</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

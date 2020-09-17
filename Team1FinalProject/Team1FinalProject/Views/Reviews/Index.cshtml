@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Review>
+
+<h2>Reviews</h2>
+
+@if (User.IsInRole("Customer"))
+{
+    <p>
+        <a asp-action="Create">Review A Book</a>
+    </p>
+}
+
+@if(User.IsInRole("Employee") || User.IsInRole("Manager"))
+{
+    <a asp-action="ReviewPending" class="btn btn-outline-dark">Reviews Pending</a>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+
+            <th>
+                Approved?
+            </th>
+
+            <th>
+                Actions
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @(item.Rejected == false  ? "Approved" : "Rejected" )
+                </td>
+                <td>
+                    @if (User.IsInRole("Employee") | User.IsInRole("Employee"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ReviewID">Approve </a>
+
+                    }
+
+                    |
+                    <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

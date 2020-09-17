@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Review>
+
+<h2>Reviews</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+
+            <th>
+                Pending?
+            </th>
+            <th>
+                Actions
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReviewContent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @(item.Approver == null ? "Pending" : "Completed" )
+                </td>
+                <td>
+                   
+                        <a asp-action="Edit" asp-route-id="@item.ReviewID">Approve </a>
+                    |
+                    <a asp-action="Details" asp-route-id="@item.ReviewID">Details</a>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-controller="Reviews" class="btn btn-group">Back to Reviews</a>

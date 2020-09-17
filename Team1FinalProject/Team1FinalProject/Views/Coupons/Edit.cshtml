@@ -1,0 +1,65 @@
+﻿@model Team1FinalProject.Models.Coupon
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Coupon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CouponID" />
+            <div class="form-group">
+                <label asp-for="CouponCode" class="control-label"></label>
+                <input asp-for="CouponCode" class="form-control" />
+                <span asp-validation-for="CouponCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PercentOff" class="control-label"></label>
+                <input asp-for="PercentOff" class="form-control" />
+                <span asp-validation-for="PercentOff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="FreeShip" /> @Html.DisplayNameFor(model => model.FreeShip)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="BaselineValue" class="control-label"></label>
+                <input asp-for="BaselineValue" class="form-control" />
+                <span asp-validation-for="BaselineValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ActiveStatus" /> @Html.DisplayNameFor(model => model.ActiveStatus)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="BeginDate" class="control-label"></label>
+                <input asp-for="BeginDate" class="form-control" />
+                <span asp-validation-for="BeginDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

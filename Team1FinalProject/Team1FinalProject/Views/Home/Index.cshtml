@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Team1FinalProject.Models.Coupon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Bevo's Book Store</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Welcome @User.Identity.Name !</h3>
+}
+
+
+
+
+@if (User.IsInRole("Customer"))
+{
+    <h3></h3>
+    <p>Look At Our Coupons Available!</p>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CouponCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PercentOff)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BeginDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CouponCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PercentOff)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BeginDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+
+                </tr>
+            }
+    </table>
+}
+
+  <img src="~/lib/bevo.jpg" alt="HTML5 Icon" style="width:1250px;height:700px;">
+
+
+
+
+
+
+

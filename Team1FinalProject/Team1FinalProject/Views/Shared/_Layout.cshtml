@@ -1,0 +1,58 @@
+﻿@addTagHelper "* , Microsoft.AspNetCore.Mvc.TagHelpers"
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Bevo's Book Store</a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a asp-controller="Books" asp-action="Index" class="nav-link">Books</a></li>
+                    @if (User.IsInRole("Customer"))
+                    {
+                        <li class="nav-item"><a asp-controller="Orders" asp-action="ShoppingCart" class="nav-link">Shopping Cart</a></li>
+                        <li class="nav-item"><a asp-controller="Orders" asp-action="Index" class="nav-link">Completed Orders</a></li>
+                    }
+
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <li class="nav-item"><a asp-controller="RoleAdmin" asp-action="Index" class="nav-link">Manage Users</a></li>
+                    }
+
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li class="nav-item"><a asp-controller="RoleAdmin" asp-action="Index" class="nav-link">Manage Users</a></li>
+                        <li class="nav-item"><a asp-controller="Reports" asp-action="Index" class="nav-link">Reports</a></li>
+                        <li class="nav-item"><a asp-controller="Invoices" asp-action="Index" class="nav-link">Procurement</a></li>
+                        <li class="nav-item"><a asp-controller="Coupons" asp-action="Index" class="nav-link">Promotions</a></li>
+                        <li class="nav-item"><a asp-controller="Reviews" asp-action="Index" class="nav-link">Reviews</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+        @await Html.PartialAsync("_LoginPartial")
+    </nav>
+
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/jquery-3.3.1.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

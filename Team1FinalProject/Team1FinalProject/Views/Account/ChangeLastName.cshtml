@@ -1,0 +1,20 @@
+﻿@model ChangeLastNameModel
+
+<h2>Change Last Name</h2>
+
+@using (Html.BeginForm("ChangeLastName", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        New Last Name:
+        @Html.TextBox("NewLastName", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change Last Name" class="btn btn-default" />
+        </div>
+    </div>
+
+}

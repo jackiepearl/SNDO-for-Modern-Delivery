@@ -1,0 +1,32 @@
+﻿@model ChangeAddressModel
+
+<h2>Change Address</h2>
+
+@using (Html.BeginForm("ChangeAddress", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        New Street:
+        @Html.TextBox("NewStreet", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        New City:
+        @Html.TextBox("NewCity", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        New State:
+        @Html.TextBox("NewState", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        New Zip:
+        @Html.TextBox("NewZip", null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Change Address" class="btn btn-default" />
+        </div>
+    </div>
+
+}

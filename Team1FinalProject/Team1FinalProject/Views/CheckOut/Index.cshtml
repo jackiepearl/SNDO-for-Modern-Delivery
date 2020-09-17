@@ -1,0 +1,83 @@
+﻿@model Team1FinalProject.Models.Order
+@using Team1FinalProject.Controllers
+
+@{
+    ViewData["Title"] = "Check Out";
+}
+
+<h2>Check Out</h2>
+
+<div>
+    <h4>Books</h4>
+    <table class="table table-sm table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total Book Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (OrderDet od in Model.OrderDets)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Book.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => od.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => od.TotalBookPrice)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm table-bordered" style="width:30%">
+
+        <tr>
+            <th colspan="2" style="text-align:center">Order Summary</th>
+        </tr>
+        <tr>
+            <td>Order Subtotal</td>
+            <td>@Html.DisplayFor(o => o.OrderSubtotal)</td>
+        </tr>
+        <tr>
+            <td>Shipping Cost</td>
+            <td>@Html.DisplayFor(o => o.ShipCost)</td>
+        </tr>
+        <tr>
+            <td>Order Total</td>
+            <td>@Html.DisplayFor(o => o.OrderTotal)</td>
+        </tr>
+
+    </table>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label class="control-label">Select a Payment Method:</label>
+        @Html.HiddenFor(model => model.OrderID)
+        <div>
+            @Html.DropDownList("SelectedCard", (SelectList)ViewBag.Cards, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <a asp-action="Create" asp-controller="CreditCards" class="btn btn-outline-secondary">Add A New Credit Card</a>
+    <a asp-action="Edit" asp-controller="CreditCards" class="btn btn-outline-secondary">Edit Existing Credit Cards</a>
+
+
+
+    <div class="form-group">
+        Coupon Code: @Html.TextBox("SearchCoupon", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Review Order" class="btn btn-outline-primary" />
+    </div>
+
+}
+

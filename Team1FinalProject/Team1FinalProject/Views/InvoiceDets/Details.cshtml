@@ -1,0 +1,36 @@
+﻿@model Team1FinalProject.Models.InvoiceDet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InvoiceDet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityOrdered)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuantityOrdered)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityArrived)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuantityArrived)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookCost)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.InvoiceDetID">Edit</a> |
+    <a asp-action="BooksOnOrder">Back to List</a>
+</div>
